@@ -14,6 +14,7 @@ import ar.com.huella.huella.securizer.repository.IUserRepository;
 import ar.com.huella.huella.securizer.repository.IVerificationTokenRepository;
 import ar.com.huella.huella.securizer.service.IAuthService;
 import ar.com.huella.huella.securizer.service.IEmailService;
+import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class AuthService implements IAuthService {
 
     @Autowired
