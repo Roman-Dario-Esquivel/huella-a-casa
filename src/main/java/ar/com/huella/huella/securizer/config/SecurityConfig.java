@@ -40,29 +40,32 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
-            .cors(cors -> {}) // activa CORS con la configuración por defecto
-            .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth
+                .csrf(csrf -> csrf.disable())
+                .cors(cors -> {
+                }) // activa CORS con la configuración por defecto
+                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(auth -> auth
                 // 🔓 Endpoints públicos
                 .requestMatchers(
-                    "/auth/**",
-                    "/public/**",
-                    "/swagger-ui.html",
-                    "/swagger-ui/**",
-                    "/v3/api-docs/**",
-                    "/swagger-resources/**",
-                    "/webjars/**"
+                        "/auth/**",
+                        "/public/**",
+                        "/swagger-ui.html",
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**",
+                        "/swagger-resources/**",
+                        "/webjars/**"
                 ).permitAll()
                 // 🔓 Todos los GET públicos
                 .requestMatchers(HttpMethod.GET, "/**").permitAll()
+                // 🔒 Solo usuarios autenticados (USER o ADMIN) pueden subir archivos
+                .requestMatchers(HttpMethod.POST, "/uploader/**").hasAnyRole("USER", "ADMIN")
                 // 🔒 Rutas específicas para admin
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 // 🔒 Todo lo demás requiere autenticación
                 .anyRequest().authenticated()
-            )
-            .authenticationProvider(authenticationProvider())
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                )
+                .authenticationProvider(authenticationProvider())
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

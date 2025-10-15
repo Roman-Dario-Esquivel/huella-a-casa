@@ -88,10 +88,12 @@ public class FileController {
      @PostMapping("/uploadUrl")
     public ResponseEntity<String> uploadFileUrl(@RequestParam("file") MultipartFile file) {
         try {
-            String fileUrl = "http://localhost:8080/view/" + fileStorageService.storeFile(file);
+            String fileId = fileStorageService.storeFile(file);
+            String fileUrl =  "http://localhost:8080/view/" +fileId;
             return ResponseEntity.ok(fileUrl);
         } catch (IOException e) {
             return ResponseEntity.status(500).body("Could not upload the file: " + e.getMessage());
         }
     }
+    
 }
