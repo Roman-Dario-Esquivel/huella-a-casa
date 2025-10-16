@@ -1,5 +1,6 @@
 package ar.com.huella.huella.service;
 
+import ar.com.huella.huella.dto.LostCreateDto;
 import ar.com.huella.huella.dto.LostDto;
 import ar.com.huella.huella.entity.Lost;
 import java.util.Optional;
@@ -9,7 +10,7 @@ public interface ILostService {
 
     public Page<LostDto> getAllLostPaged(int page, int size);
 
-    Lost createLost(Lost lost);
+    Lost createLost(LostCreateDto lost);
 
     Optional<Lost> getLostById(Long id);
 

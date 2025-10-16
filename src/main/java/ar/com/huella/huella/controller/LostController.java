@@ -1,5 +1,6 @@
 package ar.com.huella.huella.controller;
 
+import ar.com.huella.huella.dto.LostCreateDto;
 import ar.com.huella.huella.dto.LostDto;
 import ar.com.huella.huella.entity.Lost;
 import ar.com.huella.huella.exception.ResourceNotFoundException;
@@ -23,7 +24,7 @@ public class LostController {
     @Autowired
     private ILostService lostService;
 
-    @GetMapping
+    @GetMapping("/pages")
     public Page<LostDto> getLosts(@RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
          Page<LostDto> lostPage = lostService.getAllLostPaged(page, size);
@@ -39,17 +40,17 @@ public class LostController {
                 .orElseThrow(() -> new RuntimeException("Lost not found with id " + id));
     }
 
-    @PostMapping
-    public Lost createLost(@RequestBody Lost lost) {
+    @PostMapping("/create")
+    public Lost createLost(@RequestBody LostCreateDto lost) {
         return lostService.createLost(lost);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public Lost updateLost(@PathVariable Long id, @RequestBody Lost lost) {
         return lostService.updateLost(id, lost);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteLost(@PathVariable Long id) {
         lostService.deleteLost(id);
     }

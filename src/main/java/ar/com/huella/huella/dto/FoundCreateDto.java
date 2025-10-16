@@ -1,8 +1,14 @@
 package ar.com.huella.huella.dto;
 
-import ar.com.huella.huella.entity.*;
-import lombok.*;
+import ar.com.huella.huella.entity.CaseType;
+import ar.com.huella.huella.entity.Location;
 import java.time.LocalDate;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
 @Data
@@ -12,19 +18,15 @@ import org.springframework.validation.annotation.Validated;
 @Setter
 @Builder
 @Validated
-public class LostDto {
+public class FoundCreateDto {
     
-    private Long id;
     private String photo;
     private String species;
     private String description;
     private LocalDate date;
     private String address;
     private Location approximateZone;
-    private CaseType type;
-    private String name;
-    private String sex;
     private String contactNumber;
-    private String filter;
-    
+    private boolean retained;
+
 }

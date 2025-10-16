@@ -23,7 +23,7 @@ public class ResolvedController {
     @Autowired
     private IResolvedService resolvedService;
 
-    @GetMapping
+    @GetMapping("/pages")
     public Page<ResolvedDto> getResolved(@RequestParam(defaultValue = "0") int page,
                                       @RequestParam(defaultValue = "10") int size) {
          Page<ResolvedDto> resolvedPage = resolvedService.getAllResolvedPaged(page, size);
@@ -40,17 +40,17 @@ public class ResolvedController {
                               .orElseThrow(() -> new RuntimeException("Resolved not found with id " + id));
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public Resolved createResolved(@RequestBody Resolved resolved) {
         return resolvedService.createResolved(resolved);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/upgrade/{id}")
     public Resolved updateResolved(@PathVariable Long id, @RequestBody Resolved resolved) {
         return resolvedService.updateResolved(id, resolved);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delede/{id}")
     public void deleteResolved(@PathVariable Long id) {
         resolvedService.deleteResolved(id);
     }

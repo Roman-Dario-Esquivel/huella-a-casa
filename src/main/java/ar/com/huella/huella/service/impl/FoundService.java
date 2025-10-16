@@ -1,6 +1,8 @@
 package ar.com.huella.huella.service.impl;
 
+import ar.com.huella.huella.dto.FoundCreateDto;
 import ar.com.huella.huella.dto.FoundDto;
+import ar.com.huella.huella.entity.CaseType;
 import ar.com.huella.huella.entity.Found;
 import ar.com.huella.huella.exception.ResourceNotFoundException;
 import ar.com.huella.huella.mapper.CaseMapper;
@@ -25,7 +27,17 @@ public class FoundService implements IFoundService {
     }
 
     @Override
-    public Found createFound(Found found) {
+    public Found createFound(FoundCreateDto foundDto) {
+        Found found = new Found();
+    found.setPhoto(foundDto.getPhoto());
+    found.setSpecies(foundDto.getSpecies());
+    found.setDescription(foundDto.getDescription());
+    found.setDate(foundDto.getDate());
+    found.setAddress(foundDto.getAddress());
+    found.setApproximateZone(foundDto.getApproximateZone());
+    found.setType(CaseType.FOUND);
+    found.setContactNumber(foundDto.getContactNumber());
+    found.setRetained(foundDto.isRetained());
         return foundRepository.save(found);
     }
 

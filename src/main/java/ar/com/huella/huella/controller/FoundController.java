@@ -1,5 +1,6 @@
 package ar.com.huella.huella.controller;
 
+import ar.com.huella.huella.dto.FoundCreateDto;
 import ar.com.huella.huella.dto.FoundDto;
 import ar.com.huella.huella.entity.Found;
 import ar.com.huella.huella.exception.ResourceNotFoundException;
@@ -23,7 +24,7 @@ public class FoundController {
     @Autowired
     private IFoundService foundService;
 
-    @GetMapping
+    @GetMapping("/pages")
     public Page<FoundDto> getFounds(@RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
          Page<FoundDto> foundPage = foundService.getAllFoundPaged(page, size);
@@ -39,17 +40,17 @@ public class FoundController {
                 .orElseThrow(() -> new RuntimeException("Found not found with id " + id));
     }
 
-    @PostMapping
-    public Found createFound(@RequestBody Found found) {
+    @PostMapping("/create")
+    public Found createFound(@RequestBody FoundCreateDto found) {
         return foundService.createFound(found);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public Found updateFound(@PathVariable Long id, @RequestBody Found found) {
         return foundService.updateFound(id, found);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteFound(@PathVariable Long id) {
         foundService.deleteFound(id);
     }

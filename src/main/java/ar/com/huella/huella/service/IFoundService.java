@@ -1,5 +1,6 @@
 package ar.com.huella.huella.service;
 
+import ar.com.huella.huella.dto.FoundCreateDto;
 import ar.com.huella.huella.dto.FoundDto;
 import ar.com.huella.huella.entity.Found;
 import java.util.Optional;
@@ -9,7 +10,7 @@ public interface IFoundService {
 
     public Page<FoundDto> getAllFoundPaged(int page, int size);
 
-    Found createFound(Found found);
+    Found createFound(FoundCreateDto found);
 
     Optional<Found> getFoundById(Long id);
 
