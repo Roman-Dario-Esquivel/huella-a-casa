@@ -47,7 +47,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                 // 🔓 Endpoints públicos
                 .requestMatchers(
-                        "/auth/**",
+                        "/api/auth/**",
                         "/public/**",
                         "/swagger-ui.html",
                         "/swagger-ui/**",
@@ -58,7 +58,7 @@ public class SecurityConfig {
                 // 🔓 Todos los GET públicos
                 .requestMatchers(HttpMethod.GET, "/**").permitAll()
                 // 🔒 Solo usuarios autenticados (USER o ADMIN) pueden subir archivos
-                .requestMatchers(HttpMethod.POST, "/uploader/**,/api/lost/**").hasAnyRole("USER", "ADMIN")
+                .requestMatchers(HttpMethod.POST, "/api/upload/**,/api/lost/**,/api/found/**,/api/resolved/**,/api/migrate/**").hasAnyRole("USER", "ADMIN")
                 // 🔒 Rutas específicas para admin
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 // 🔒 Todo lo demás requiere autenticación
