@@ -14,4 +14,7 @@ public class RegisterRequest {
     private String name;
     private String email;
     private String password;
+    private double latitude;
+    private double longitude;
+    private double radiusKm;
 }

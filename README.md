@@ -50,8 +50,7 @@
 ├── pom.xml
 └── README.md
 
-yaml
-Copiar código
+
 
 ---
 
@@ -135,10 +134,11 @@ Roman Dario Esquivel — repositorio original
 
 Contribuidores futuros son bienvenidos: forquear, proponer PRs, abrir issues.
 
-📜 Licencia
-(Colocá la licencia que prefieras, por ejemplo MIT, Apache 2.0, etc.)
+## 📄 Licencia
 
-text
-Copiar código
-MIT License
-© 2025 Huella a Casa
+Distribuido bajo la licencia [MIT](./LICENSE).  
+© 2025 Roman Dario Esquivel. Todos los derechos reservados.
+
+---
+
+💙 Si este proyecto te resultó útil, ¡considerá dejar una estrella en GitHub!
