@@ -3,6 +3,7 @@ package ar.com.huella.huella.securizer.service.implementation;
 import ar.com.huella.huella.securizer.service.IEmailService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -58,6 +59,14 @@ public class EmailService implements IEmailService {
         String htmlMessage = templateEngine.process("reset-password", context);
 
         sendEmail(to, "Restablece tu contraseña", htmlMessage);
+    }
+
+    @Override
+    public void sendCaseNotification(String to, String subject, String templateName, Map<String, Object> variables) {
+        Context context = new Context();
+        context.setVariables(variables);
+        String htmlBody = templateEngine.process(templateName, context);
+        sendEmail(to, subject, htmlBody);
     }
 
 }

@@ -11,10 +11,12 @@ import org.springframework.validation.annotation.Validated;
 @Builder
 @Validated
 public class RegisterRequest {
+
     private String name;
     private String email;
     private String password;
     private double latitude;
     private double longitude;
     private double radiusKm;
+    
 }

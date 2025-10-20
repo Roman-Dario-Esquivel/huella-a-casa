@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${subject}">Mascota cerca de tu zona</title>
+</head>
+<body style="font-family: Arial, sans-serif; color: #333;">
+  <h2 th:text="${subject}">🐾 Notificación de mascota</h2>
+
+  <p>Hola <strong th:text="${userName}">Usuario</strong>,</p>
+
+  <p th:if="${type == 'lost'}">
+    Se ha reportado una <strong>mascota perdida</strong> cerca de tu zona 
+    (<span th:text="${distance}">X</span> km de distancia).
+  </p>
+
+  <p th:if="${type == 'found'}">
+    ¡Buenas noticias! Alguien ha <strong>encontrado una mascota</strong> cerca de tu zona 
+    (<span th:text="${distance}">X</span> km de distancia).
+  </p>
+
+  <p><strong>Descripción:</strong> <span th:text="${description}">Descripción</span></p>
+  <p><strong>Dirección:</strong> <span th:text="${address}">Dirección</span></p>
+
+  <p style="margin-top: 20px;">
+    Podés ver más detalles en: 
+    <a th:href="${caseUrl}" th:text="${caseUrl}">Ver caso</a>
+  </p>
+
+  <hr/>
+  <p style="font-size: 12px; color: #777;">
+    © <span th:text="${year}"></span> Huella a Casa
+  </p>
+</body>
+</html>

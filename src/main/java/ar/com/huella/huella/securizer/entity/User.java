@@ -37,4 +37,5 @@ public class User {
     private double radiusKm;
 
     private boolean enabled = false; // se activa al verificar correo
+    
 }

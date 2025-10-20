@@ -2,7 +2,7 @@ package ar.com.huella.huella.controller;
 
 import ar.com.huella.huella.entity.Found;
 import ar.com.huella.huella.entity.Lost;
-import ar.com.huella.huella.service.impl.LocationFilterService;
+import ar.com.huella.huella.service.ILocationFilterService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LocationFilterController {
 
     @Autowired
-    private LocationFilterService locationFilterService;
+    private ILocationFilterService locationFilterService;
 
     @GetMapping("/nearby")
     @Operation(summary = "Metodo que devuelve todos en un radio.", description = "Metodo que te devuelve todos los animales en un radio")
